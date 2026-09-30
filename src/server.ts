@@ -5,6 +5,7 @@ import jwt from "@fastify/jwt";
 import { authRoutes } from "./routes/auth/auth.routes.js";
 import { ZodError } from "zod";
 import { taskRoutes } from "./routes/tasks/tasks.routes.js";
+import { eventRoutes } from "./routes/events/events.routes.js";
 
 const app = Fastify({ logger: true });
 
@@ -19,6 +20,7 @@ app.setErrorHandler((error, _req, reply) => {
   return reply.send(error);
 });
 app.register(taskRoutes, { prefix: "/tasks" });
+app.register(eventRoutes, { prefix: "/events" });
 
 app.get("/health", async () => ({ status: "ok" }));
 
