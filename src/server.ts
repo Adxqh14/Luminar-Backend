@@ -9,8 +9,11 @@ import { eventRoutes } from "./routes/events/events.routes.js";
 
 const app = Fastify({ logger: true });
 
-app.register(cors, { origin: true });
-app.register(jwt, { secret: process.env.JWT_SECRET! });
+app.register(cors, {
+  origin: true,
+  methods: ["GET", "POST", "PATCH", "DELETE", "PUT", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+});app.register(jwt, { secret: process.env.JWT_SECRET! });
 app.register(authRoutes, { prefix: "/auth" });
 
 app.setErrorHandler((error, _req, reply) => {
