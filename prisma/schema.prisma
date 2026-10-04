@@ -20,6 +20,18 @@ model User {
   createdAt DateTime @default(now())
   task Task[]
   events    Event[]
+  spotifyAccount SpotifyAccount?
+}
+
+model SpotifyAccount {
+  id           String   @id @default(cuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken  String
+  refreshToken String
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Event {
