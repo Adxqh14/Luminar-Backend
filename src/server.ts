@@ -8,6 +8,7 @@ import { taskRoutes } from "./routes/tasks/tasks.routes.js";
 import { eventRoutes } from "./routes/events/events.routes.js";
 import { dictionaryRoutes } from "./routes/dictionary/dictionary.routes.js";
 import { spotifyRoutes } from "./routes/spotify/spotify.routes.js";
+import { aiRoutes } from "./routes/ai/ai.routes.js";
 
 const app = Fastify({ logger: true });
 
@@ -28,6 +29,7 @@ app.register(taskRoutes, { prefix: "/tasks" });
 app.register(eventRoutes, { prefix: "/events" });
 app.register(dictionaryRoutes, { prefix: "/dictionary" });
 app.register(spotifyRoutes, { prefix: "/spotify" });
+app.register(aiRoutes, { prefix: "/ai" });
 
 app.get("/health", async () => ({ status: "ok" }));
 
